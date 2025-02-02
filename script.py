@@ -28,7 +28,7 @@ async def on_ready():
 
 @bot.tree.command(name="get_info", description="Obtenez des informations sur un joueur de Free Fire.")
 @app_commands.describe(uid="UID à vérifier")
-async def obtenir_des_informations(interaction: discord.Interaction, uid: str):
+async def get_info_command(interaction: discord.Interaction, uid: str):
 
     await interaction.response.defer()
 
