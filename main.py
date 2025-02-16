@@ -220,7 +220,7 @@ async def check_ban_command(interaction: discord.Interaction, uid: str):
 
 
 async def check_ban(uid):
-    api_url = f"https://api.paulalfredo.me/check_ban/uid={uid}"
+    api_url = f"https://api.paulalfredo.me/check_ban/{uid}"
     try:
         async with aiohttp.ClientSession() as session:
             async with session.get(api_url) as response:
