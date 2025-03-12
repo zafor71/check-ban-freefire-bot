@@ -1,0 +1,8 @@
+{
+    "status": "success",
+    "msg": "",
+    "data": {
+        "is_banned": 0,
+        "period": 0
+    }
+} 
