@@ -3,6 +3,7 @@ import os
 from dotenv import load_dotenv
 
 
+<<<<<<< HEAD
 load_dotenv()
 
 
@@ -94,6 +95,11 @@ async def get_player_info_global(player_id):
                     return {'error': f"Erreur API: {status}"}
     except Exception as e:
         return {'error': f"Une erreur s'est produite : {str(e)}"}
+=======
+load_dotenv() 
+import aiohttp
+
+>>>>>>> sauvegarde-commits
 async def check_ban(uid):
     api_url = f"https://api.paulalfredo.me/check_ban/{uid}"
     try:
@@ -104,6 +110,7 @@ async def check_ban(uid):
 
                 response_data = await response.json()
                 if response_data.get("status") == 200:
+<<<<<<< HEAD
                     is_banned = response_data.get("data", {}).get("is_banned", 0)
                     return is_banned != 0
                 else:
@@ -112,3 +119,18 @@ async def check_ban(uid):
         print(f"Erreur API : {e}")
         return None
 
+=======
+                    data = response_data.get("data")
+
+                    return {
+                        "is_banned": data.get("is_banned", 0),
+                        "nickname": data.get("nickname", ""),
+                        "period": data.get("period", 0),
+                        "region": data.get('region',0 )
+                    }
+                else:
+                    return None
+    except Exception as e:
+        print(f"An error occurred: {e}")
+        return None
+>>>>>>> sauvegarde-commits

@@ -1,4 +1,9 @@
 discord.py>=2.3.2
 requests>=2.31.0
 python-dotenv>=1.0.0
+<<<<<<< HEAD
 aiohttp
+=======
+aiohttp
+python-dotenv>=1.0.0
+>>>>>>> sauvegarde-commits
