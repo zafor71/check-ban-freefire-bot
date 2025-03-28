@@ -108,26 +108,9 @@ intents = discord.Intents.default()
 intents.message_content = True
 bot = commands.Bot(command_prefix="!", intents=intents)
 
-
 @bot.event
 async def on_ready():
     print(f"Le bot est connecté en tant que {bot.user}")
-
-
-import discord
-import os
-from discord.ext import commands
-from dotenv import load_dotenv
-from utils import check_ban
-
-load_dotenv()
-APPLICATION_ID = os.getenv("APPLICATION_ID")  # ID de l'application
-TOKEN = os.getenv("TOKENN")  # Token du bot
-
-intents = discord.Intents.default()
-intents.message_content = True
-bot = commands.Bot(command_prefix="!", intents=intents)
-
 
 @bot.event
 async def on_ready():

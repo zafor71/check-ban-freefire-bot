@@ -3,7 +3,6 @@ import os
 from dotenv import load_dotenv
 
 load_dotenv()
-import aiohttp
 
 async def check_ban(uid):
     api_url = f"https://api.paulalfredo.me/check_ban/{uid}"
