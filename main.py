@@ -3,7 +3,7 @@ import os
 from discord.ext import commands
 from dotenv import load_dotenv
 from utils import check_ban
-from flask import flask, Flask
+from flask import Flask
 import threading
 
 app=Flask(__name__)
