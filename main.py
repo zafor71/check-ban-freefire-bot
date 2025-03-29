@@ -2,33 +2,44 @@ import discord
 import os
 from discord.ext import commands
 from dotenv import load_dotenv
-from utils import check_ban
 from flask import Flask
 import threading
+from utils import check_ban
 
-app=Flask(__name__)
-@app.route('/')
-def home ():
-    return "Bot is working  "
+# Initialisation de Flask
+app = Flask(__name__)
 
-def run_flask():
-    app.run(host='0.0.0.0', port=10000)
-threading.Thread(target=run_flask).start()
 
 load_dotenv()
-APPLICATION_ID = os.getenv("APPLICATION_ID")  # ID de l'application
-TOKEN = os.getenv("TOKENN")  # Token du bot
+APPLICATION_ID = os.getenv("APPLICATION_ID")
+TOKEN = os.getenv("TOKENN")
+
 
 intents = discord.Intents.default()
 intents.message_content = True
 bot = commands.Bot(command_prefix="!", intents=intents)
 
-@bot.event
-async def on_ready():
-    print(f"Le bot est connecté en tant que {bot.user}")
+
+nomBot = "None"
+
+# Route Flask pour afficher l'état du bot
+@app.route('/')
+def home():
+    global nomBot
+    return f"Bot {nomBot} is working"
+
+
+def run_flask():
+    app.run(host='0.0.0.0', port=10000)
+
+
+threading.Thread(target=run_flask).start()
+
 
 @bot.event
 async def on_ready():
+    global nomBot
+    nomBot = f"{bot.user}"
     print(f"Le bot est connecté en tant que {bot.user}")
 
 
