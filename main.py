@@ -1,104 +1,19 @@
-# import discord
-# import aiohttp
-# import os
-# from discord.ext import commands
-# from discord import app_commands
-# from dotenv import load_dotenv
-# from utils import check_ban 
-
-# APPLICATION_ID = os.getenv("APPLICATION_ID")  # ID de 
-# TOKEN = os.getenv("TOKENN")  # Token du bot
-# MY_ID = os.getenv("MY_ID")
-# MY_ID_INT = int(MY_ID)
-
-# load_dotenv()
-# intents = discord.Intents.default()
-# intents.message_content = True
-# bot = commands.Bot(command_prefix="!", intents=intents)
-
-
-# @bot.event
-# async def on_ready():
-#     print(f"Le bot est connecté en tant que {bot.user}")
-#     await bot.tree.sync()
-
-
-# @bot.command(name="ID")
-# async def check_ban_command(ctx, uid: str):
-#     # Vérification que l'UID commence par !ID sans espace
-#     if not uid.startswith("ID") or len(uid) <= 4:
-#         await ctx.send("❌ **Commande invalide.** Utilisez !ID<UID> pour vérifier un bannissement.")
-#         return
-
-#     # Extraire l'UID en supprimant le préfixe "ID"
-#     uid = uid[2:].strip()
-
-#     # Vérification de la validité de l'UID
-#     if not uid.isdigit() or len(uid) < 6:
-#         await ctx.send("❌ **UID invalide.** Veuillez fournir un UID valide.")
-#         return
-
-#     try:
-#         # Vérification du bannissement via une fonction (remplacez `check_ban` par votre logique réelle)
-#         ban_status = await check_ban(uid)
-#     except Exception as e:
-#         await ctx.send(f"❌ **Une erreur est survenue :** {str(e)}")
-#         return
-
-#     # Si le statut de bannissement est None, il y a eu une erreur dans la vérification
-#     if ban_status is None:
-#         await ctx.send("❌ **Erreur lors de la vérification du bannissement.**")
-#         return
-
-#     # Récupération des informations de ban
-#     nickname = ban_status.get("nickname", "Inconnu")  # Nom du joueur (si disponible)
-#     is_banned = int(ban_status.get("is_banned"))  # Statut du bannissement
-#     periode = int(ban_status.get("periode"))  # Période du bannissement
-
-#     # Formater la période pour afficher la durée de l'interdiction
-#     if periode == 1:
-#         periode_str = "plus de 1 mois"
-#     elif periode == 2:
-#         periode_str = "plus de 3 mois"
-#     elif periode == 3:
-#         periode_str = "plus de 6 mois"
-#     elif periode == 4:
-#         periode_str = "plus de 1 an"
-#     else:
-#         periode_str = f"{periode} jours"
-
-#     # Création de l'embed
-#     embed = discord.Embed(
-#         title="🔍 Vérification de Bannissement",
-#         color=0xFF0000 if is_banned else 0x00FF00,  # Rouge si banni, vert sinon
-#     )
-
-#     # Si le joueur est banni
-#     if is_banned:
-#         embed.description = f"• **Compte banni**. Durée de l'interdiction : {periode_str}\n" \
-#                             f"**Pseudo** : {nickname}\n" \
-#                             f"**UID** : {uid}"
-#         embed.set_image(url="https://i.ibb.co/tDnbYrK/standard-1.gif")  # Image si banni
-#     else:
-#         embed.description = f"✅ **Le compte {nickname}** (UID **{uid}**) n'est __PAS BANNI__ !\n\n" \
-#                             f"**Pseudo** : {nickname}\n" \
-#                             f"**UID** : {uid}"
-#         embed.set_image(url="https://i.ibb.co/CshJSf8/standard-2.gif")  # Image si non banni
-
-#     # Footer avec une mise à jour en temps réel
-#     embed.set_footer(text="🔄 Données mises à jour en temps réel")
-
-#     # Envoi de l'embed à l'utilisateur
-#     await ctx.send(embed=embed)
-
-# bot.run(TOKEN)
-
-
 import discord
 import os
 from discord.ext import commands
 from dotenv import load_dotenv
 from utils import check_ban
+from flask import flask, Flask
+import threading
+
+app=Flask(__name__)
+@app.route('/')
+def home ():
+    return "Bot is working  "
+
+def run_flask():
+    app.run(host='0.0.0.0', port=10000)
+threading.Thread(target=run_flask).start()
 
 load_dotenv()
 APPLICATION_ID = os.getenv("APPLICATION_ID")  # ID de l'application
