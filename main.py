@@ -65,45 +65,39 @@ async def check_ban_command(ctx):
             f"{ctx.author.mention} ❌ **Impossible d'obtenir les informations.**\nVeuillez réessayer plus tard.")
         return
 
-    # Récupération des données avec des valeurs par défaut
+ 
     is_banned = int(ban_status.get("is_banned", 0))
     period = ban_status.get("period", "N/A")
+    
+    id = f"`{user_id} `"
 
-    # Vérification et formatage de la durée du ban
+
     if isinstance(period, int):
-        period_str = f"⏳ Plus de **{period}** mois"
+        period_str = f"` plus de {period} mois`"
     else:
-        period_str = "⏳ Durée indisponible"
+        period_str = " indisponible"
 
-    # Création de l'embed
     embed = discord.Embed(
-        title="🔍 Vérification du bannissement",
         color=0xFF0000 if is_banned else 0x00FF00,
         timestamp=ctx.message.created_at
     )
-
+    
     if is_banned:
+        embed.title = "**▌ Compte banni 🛑 **\n"             
         embed.description = (
-            f"🚫 **Ce compte est banni !**\n"
-            f"🔢 **ID :** `{user_id}`\n"
-            f"📅 **Durée :** {period_str}\n"
-        )
+                            f"•**Ce compte a été confirmé comme utilisant des hacks.**\n."
+                            f"•**Durée de la suspension : {period_str}**\n" + \
+                            f"•**ID du joueur : `{id}`**\n")
         embed.set_image(url="https://i.ibb.co/tDnbYrK/standard-1.gif")
     else:
-        embed.description = (
-            f"✅ **Ce compte n'est pas banni !**\n"
-            f"🔢 **ID :** `{user_id}`\n"
-
-        )
+        embed.title = "**▌ Compte non banni ✅ **\n"
+        embed.description =(f"•**Aucune preuve suffisante pour confirmer l'utilisation de hacks sur ce compte.**\n"+ \
+                            f"•**ID du joueur : `{id}`**\n")
         embed.set_image(url="https://i.ibb.co/CshJSf8/standard-2.gif")
 
-    # Affichage de l'avatar de l'utilisateur en haut à droite
     embed.set_thumbnail(url=ctx.author.avatar.url if ctx.author.avatar else ctx.author.default_avatar.url)
+    embed.set_footer(text="📌 Check ban free fire")
 
-    # Footer amélioré
-    embed.set_footer(text="📌 Garena Free Fire - Données mises à jour en temps réel")
-
-    # Réponse avec mention + embed
     await ctx.send(f"{ctx.author.mention}", embed=embed)
 
 
