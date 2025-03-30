@@ -1,73 +1,66 @@
-# Discord Bot Free Fire Info
+# Discord Ban Check Bot
 
-## Description
-This Discord bot provides detailed information about Free Fire players, checks their ban status, and retrieves data on guilds and guild leaders. It uses the RapidAPI API to fetch information and the official Free Fire API to verify bans.
+This is a Discord bot that checks whether a Free Fire account is banned using a provided user ID. The bot also includes a Flask web server to monitor its status.
 
 ## Features
-- 🔍 **Get player information** via the `/get_info` command
-- 🚨 **Check if a player is banned** via the `/check_ban` command
-- 📜 **Display guild and leader details**
-- 🌍 **Multi-region support**
+
+- Check if a Free Fire account is banned using the `!ID <user_id>` command.
+- Displays ban status and ban duration (if available) in a Discord embed message.
+- Flask web server to indicate that the bot is running.
+- Uses `.env` file for secure storage of credentials.
+
+## Requirements
+
+- Python 3.8+
+- A Discord bot token
+- A `.env` file containing:
+  ```ini
+  APPLICATION_ID=your_application_id
+  TOKEN=your_bot_token
+  ```
 
 ## Installation
-### Prerequisites
-- Python 3.8+
-- A registered Discord bot ([Create a bot here](https://discord.com/developers/applications))
-- A RapidAPI account with a valid API key ([link](https://rapidapi.com/nazi436123/api/id-game-checker/))
 
-### Installation Steps
-1. **Clone the project**
-   ```bash
-   git clone https://github.com/paulafredo/check-ban-and-info-ff
+1. Clone this repository:
+   ```sh
+   git clone https://github.com/paulafredo/check-ban-and-info-discord
+   cd your-repo
    ```
-2. **Install dependencies**
-   ```bash
+
+2. Install dependencies:
+   ```sh
    pip install -r requirements.txt
    ```
-3. **Configure environment variables**
-   Create a `.env` file and add:
-   ```env
+
+3. Create a `.env` file in the root directory and add your credentials:
+   ```ini
    APPLICATION_ID=your_application_id
-   TOKEN=your_discord_token
-   RAPIDAPI_KEY=your_rapidapi_key
-   RAPIDAPI_HOST=your_rapidapi_host
-   ```
-4. **Run the bot**
-   ```bash
-   python bot.py
+   TOKEN=your_bot_token
    ```
 
-## Available Commands
-| Command       | Description |
-|--------------|-------------|
-| `/get_info` `<UID>` | Get information about a Free Fire player |
-| `/check_ban` `<UID>` | Check if a player is banned |
+4. Run the bot:
+   ```sh
+   python main.py
+   ```
 
-## Ban Check API Response Details
-- **If the account is NOT banned:**
-  ```json
-  {
-      "status": "success",
-      "msg": "",
-      "data": {
-          "is_banned": 0,
-          "period": 0
-      }
-  }
-  ```
-- **If the account is banned:**
-  ```json
-  {
-      "status": "success",
-      "msg": "",
-      "data": {
-          "is_banned": 1,
-          "period": 1
-      }
-  }
-  ```
+## Usage
 
+- Use `!ID <user_id>` in a Discord server where the bot is present.
+- The bot will fetch ban information from [api-check-ban-freefire](https://github.com/paulafredo/api-check-ban-freefire) and respond with an embedded message.
+- The bot's status can be checked via the Flask server running at `http://localhost:10000`.
+
+## Technologies Used
+
+- Python
+- Discord.py
+- Flask
+- dotenv
 
 ## License
-This project is licensed under the MIT License.
+
+This project is licensed under the MIT License. Feel free to use and modify it.
+
+## Author
+
+[Your Name](https://github.com/paulafredo)
 
