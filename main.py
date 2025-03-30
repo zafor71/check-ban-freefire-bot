@@ -47,6 +47,7 @@ async def on_ready():
 async def check_ban_command(ctx):
     content = ctx.message.content
     user_id = content[3:].strip()
+    print(f"Commande fait par {ctx.author}")
 
     # Vérification si l'ID est un nombre
     if not user_id.isdigit():
@@ -97,7 +98,6 @@ async def check_ban_command(ctx):
 
     embed.set_thumbnail(url=ctx.author.avatar.url if ctx.author.avatar else ctx.author.default_avatar.url)
     embed.set_footer(text="📌 Check ban free fire")
-
     await ctx.send(f"{ctx.author.mention}", embed=embed)
 
 
