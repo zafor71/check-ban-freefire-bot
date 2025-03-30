@@ -1,4 +1,4 @@
-# Discord Ban Check Bot
+# CheckBan-FreeFire-Bot
 
 This is a Discord bot that checks whether a Free Fire account is banned using a provided user ID. The bot also includes a Flask web server to monitor its status.
 
