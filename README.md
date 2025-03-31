@@ -62,5 +62,5 @@ This project is licensed under the MIT License. Feel free to use and modify it.
 
 ## Author
 
-[Your Name](https://github.com/paulafredo)
+[Paul Alfredo](https://github.com/paulafredo)
 
