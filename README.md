@@ -38,10 +38,10 @@ A Discord bot to check if a Free Fire account is banned, using a user ID. Also i
    git clone https://github.com/paulafredo/check-ban-and-info-discord
    cd your-repo
    ```
-2. Create environements:
+2. Create and activate a virtual environment:
    ```sh
    python -m venv .venv
-   ```
+   source .venv/bin/activate  # On Windows use: .venv\Scripts\activate
    
 3. Install dependencies:
    ```sh
