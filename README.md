@@ -1,13 +1,25 @@
-# CheckBan-FreeFire-Bot
+# 🔍 CheckBan Free Fire Discord Bot
 
-This is a Discord bot that checks whether a Free Fire account is banned using a provided user ID. The bot also includes a Flask web server to monitor its status.
+![Status](https://img.shields.io/badge/status-active-brightgreen)
 
-## Features
+A Discord bot to check if a Free Fire account is banned, using a user ID. Also includes a Flask-based status server.
+
+## 📚 Table of Contents
+
+- [Features](#features)
+- [Requirements](#requirements)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Technologies Used](#technologies-used)
+- [License](#license)
+- [Author](#author)
+
+## 🚀 Features
 
 - Check if a Free Fire account is banned using the `!ID <user_id>` command.
-- Displays ban status and ban duration (if available) in a Discord embed message.
-- Flask web server to indicate that the bot is running.
-- Uses `.env` file for secure storage of credentials.
+- Returns ban status and ban duration (if available) in an embedded Discord message.
+- Flask web server on `http://localhost:10000` to indicate bot status.
+- Secure credentials using `.env`.
 
 ## Requirements
 
@@ -26,19 +38,25 @@ This is a Discord bot that checks whether a Free Fire account is banned using a 
    git clone https://github.com/paulafredo/check-ban-and-info-discord
    cd your-repo
    ```
-
-2. Install dependencies:
+2. Create environements:
+   ```sh
+   python -m venv .venv
+   ```
+   
+3. Install dependencies:
    ```sh
    pip install -r requirements.txt
    ```
 
-3. Create a `.env` file in the root directory and add your credentials:
+
+
+4. Create a `.env` file in the root directory and add your credentials:
    ```ini
    APPLICATION_ID=your_application_id
    TOKEN=your_bot_token
    ```
 
-4. Run the bot:
+5. Run the bot:
    ```sh
    python main.py
    ```
