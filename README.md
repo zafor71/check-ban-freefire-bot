@@ -61,6 +61,16 @@ A Discord bot to check if a Free Fire account is banned, using a user ID. Also i
    python main.py
    ```
 
+## 📸 Demo
+
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/bbcae61d-72a7-4caf-9d3e-cc587546a06b" alt="demo 1" width="400"/>
+  <img src="https://github.com/user-attachments/assets/5c9168a0-3f5a-46e3-af1f-8f6fe31cbae3" alt="demo 2" width="410"/>
+</div>
+
+> 🎥 The Git in this demo was provided by [NinjaHex]() – 
+
+
 ## Usage
 
 - Use `!ID <user_id>` in a Discord server where the bot is present.
