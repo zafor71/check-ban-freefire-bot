@@ -12,7 +12,7 @@ app = Flask(__name__)
 
 load_dotenv()
 APPLICATION_ID = os.getenv("APPLICATION_ID")
-TOKEN = os.getenv("TOKENN")
+TOKEN = os.getenv("TOKEN")
 
 
 intents = discord.Intents.default()
