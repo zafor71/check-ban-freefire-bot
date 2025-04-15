@@ -1,13 +1,25 @@
-# Discord Ban Check Bot
+# 🔍 CheckBan Free Fire Discord Bot
 
-This is a Discord bot that checks whether a Free Fire account is banned using a provided user ID. The bot also includes a Flask web server to monitor its status.
+![Status](https://img.shields.io/badge/status-active-brightgreen)
 
-## Features
+A Discord bot to check if a Free Fire account is banned, using a user ID. Also includes a Flask-based status server.
+
+## 📚 Table of Contents
+
+- [Features](#features)
+- [Requirements](#requirements)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Technologies Used](#technologies-used)
+- [License](#license)
+- [Author](#author)
+
+## 🚀 Features
 
 - Check if a Free Fire account is banned using the `!ID <user_id>` command.
-- Displays ban status and ban duration (if available) in a Discord embed message.
-- Flask web server to indicate that the bot is running.
-- Uses `.env` file for secure storage of credentials.
+- Returns ban status and ban duration (if available) in an embedded Discord message.
+- Flask web server on `http://localhost:10000` to indicate bot status.
+- Secure credentials using `.env`.
 
 ## Requirements
 
@@ -26,22 +38,38 @@ This is a Discord bot that checks whether a Free Fire account is banned using a 
    git clone https://github.com/paulafredo/check-ban-and-info-discord
    cd your-repo
    ```
-
-2. Install dependencies:
+2. Create and activate a virtual environment:
+   ```sh
+   python -m venv .venv
+   source .venv/bin/activate  # On Windows use: .venv\Scripts\activate
+   
+3. Install dependencies:
    ```sh
    pip install -r requirements.txt
    ```
 
-3. Create a `.env` file in the root directory and add your credentials:
+
+
+4. Create a `.env` file in the root directory and add your credentials:
    ```ini
    APPLICATION_ID=your_application_id
    TOKEN=your_bot_token
    ```
 
-4. Run the bot:
+5. Run the bot:
    ```sh
    python main.py
    ```
+
+## 📸 Demo
+
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/bbcae61d-72a7-4caf-9d3e-cc587546a06b" alt="demo 1" width="400"/>
+  <img src="https://github.com/user-attachments/assets/5c9168a0-3f5a-46e3-af1f-8f6fe31cbae3" alt="demo 2" width="410"/>
+</div>
+
+> 🎥 The Git in this demo was provided by [NinjaHex]() – 
+
 
 ## Usage
 
@@ -62,5 +90,5 @@ This project is licensed under the MIT License. Feel free to use and modify it.
 
 ## Author
 
-[Your Name](https://github.com/paulafredo)
+[Paul Alfredo](https://github.com/paulafredo)
 
