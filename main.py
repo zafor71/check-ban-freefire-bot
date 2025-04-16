@@ -19,10 +19,14 @@ intents = discord.Intents.default()
 intents.message_content = True
 bot = commands.Bot(command_prefix="!", intents=intents)
 
+with open("languages.json","r",encoding ="utf-8")as f :
+    translations=json.load(f)
 
+DEFAULT_LANG = "en"
+user_languages = {}
+ 
 nomBot = "None"
 
-# Route Flask pour afficher l'état du bot
 @app.route('/')
 def home():
     global nomBot
@@ -42,63 +46,79 @@ async def on_ready():
     nomBot = f"{bot.user}"
     print(f"Le bot est connecté en tant que {bot.user}")
 
-
-@bot.command(name="ID")
+@bot.command(name="lang")
+async def change_language(ctx,lang_code : str):
+    lang_code = lang_code.lower()
+    if lang_code not in ["en","fr"]:
+        await ctx.send("❌ Invalid language. Available: `en`, `fr`")
+        return 
+    
+    user_languages[ctx.author.id]=lang_code
+    message="✅ Language set to English." if lang_code == 'en' else "✅ Langue définie sur le français."
+    await ctx.send(f"{ctx.author.mention} {message}")
+    
+@bot.command(name="ID")  
 async def check_ban_command(ctx):
     content = ctx.message.content
     user_id = content[3:].strip()
-    print(f"Commande fait par {ctx.author}")
+    lang = user_languages.get(ctx.author.id, "en")  
 
-    # Vérification si l'ID est un nombre
+    print(f"Commande fait par {ctx.author} (lang={lang})")
+
     if not user_id.isdigit():
-        await ctx.send(
-            f"{ctx.author.mention} ❌ **UID invalide !**\n➡️ Veuillez fournir un UID valide sous la forme : `!ID 123456789`")
+        message = {
+            "en": f"{ctx.author.mention} ❌ **Invalid UID!**\n➡️ Please use: `!ID 123456789`",
+            "fr": f"{ctx.author.mention} ❌ **UID invalide !**\n➡️ Veuillez fournir un UID valide sous la forme : `!ID 123456789`"
+        }
+        await ctx.send(message[lang])
         return
 
     try:
         ban_status = await check_ban(user_id)
     except Exception as e:
-        await ctx.send(f"{ctx.author.mention} ⚠️ **Erreur lors de la vérification :**\n```{str(e)}```")
+        await ctx.send(f"{ctx.author.mention} ⚠️ Error:\n```{str(e)}```")
         return
 
     if ban_status is None:
-        await ctx.send(
-            f"{ctx.author.mention} ❌ **Impossible d'obtenir les informations.**\nVeuillez réessayer plus tard.")
+        message = {
+            "en": f"{ctx.author.mention} ❌ **Could not get information. Please try again later.**",
+            "fr": f"{ctx.author.mention} ❌ **Impossible d'obtenir les informations.**\nVeuillez réessayer plus tard."
+        }
+        await ctx.send(message[lang])
         return
 
- 
     is_banned = int(ban_status.get("is_banned", 0))
     period = ban_status.get("period", "N/A")
-    
-    id = f"`{user_id} `"
-
+    id_str = f"`{user_id}`"
 
     if isinstance(period, int):
-        period_str = f"` plus de {period} mois`"
+        period_str = f"`more than {period} months`" if lang == "en" else f"`plus de {period} mois`"
     else:
-        period_str = " indisponible"
+        period_str = "unavailable" if lang == "en" else "indisponible"
 
     embed = discord.Embed(
         color=0xFF0000 if is_banned else 0x00FF00,
         timestamp=ctx.message.created_at
     )
-    
+
     if is_banned:
-        embed.title = "**▌ Compte banni 🛑 **\n"             
+        embed.title = "**▌ Banned Account 🛑 **" if lang == "en" else "**▌ Compte banni 🛑 **"
         embed.description = (
-                            f"•**Ce compte a été confirmé comme utilisant des hacks.**\n."
-                            f"•**Durée de la suspension : {period_str}**\n" + \
-                            f"•**ID du joueur : `{id}`**\n")
+            f"• {'This account was confirmed for using cheats.' if lang == 'en' else 'Ce compte a été confirmé comme utilisant des hacks.'}\n"
+            f"• {'Suspension duration:' if lang == 'en' else 'Durée de la suspension :'} {period_str}\n"
+            f"• {'Player ID:' if lang == 'en' else 'ID du joueur :'} {id_str}\n"
+        )
         embed.set_image(url="https://i.ibb.co/tDnbYrK/standard-1.gif")
     else:
-        embed.title = "**▌ Compte non banni ✅ **\n"
-        embed.description =(f"•**Aucune preuve suffisante pour confirmer l'utilisation de hacks sur ce compte.**\n"+ \
-                            f"•**ID du joueur : `{id}`**\n")
+        embed.title = "**▌ Clean Account ✅ **" if lang == "en" else "**▌ Compte non banni ✅ **"
+        embed.description = (
+            f"• {'No sufficient evidence of cheat usage on this account.' if lang == 'en' else 'Aucune preuve suffisante pour confirmer l’utilisation de hacks sur ce compte.'}\n"
+            f"• {'Player ID:' if lang == 'en' else 'ID du joueur :'} {id_str}\n"
+        )
         embed.set_image(url="https://i.ibb.co/CshJSf8/standard-2.gif")
 
     embed.set_thumbnail(url=ctx.author.avatar.url if ctx.author.avatar else ctx.author.default_avatar.url)
     embed.set_footer(text="📌 Check ban free fire")
     await ctx.send(f"{ctx.author.mention}", embed=embed)
-
 
 bot.run(TOKEN)
