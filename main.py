@@ -19,11 +19,10 @@ intents = discord.Intents.default()
 intents.message_content = True
 bot = commands.Bot(command_prefix="!", intents=intents)
 
-with open("languages.json","r",encoding ="utf-8")as f :
-    translations=json.load(f)
+
 
 DEFAULT_LANG = "en"
-user_languages = {}
+
  
 nomBot = "None"
 
