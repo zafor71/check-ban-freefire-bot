@@ -4,12 +4,11 @@
 
 A Discord bot to check if a Free Fire account is banned, using a user ID. Also includes a Flask-based status server.
 
-## 📚 Table of Contents
-
-- [Features](#features)
+- [Features](#-features)
 - [Requirements](#requirements)
 - [Installation](#installation)
 - [Usage](#usage)
+- [Create a Discord Bot](#create-a-discord-bot)
 - [Technologies Used](#technologies-used)
 - [License](#license)
 - [Author](#author)
