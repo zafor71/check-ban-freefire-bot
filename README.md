@@ -129,6 +129,14 @@ Change the **display language** of the bot for the current user.
      
 > ℹ️ By default, the language is set to **English (`en`)** if no other language is selected.
 
+
+### 🤖 Invite the Bot to Your Server
+
+Click the link below to invite the CheckBan bot to your Discord server:
+
+👉 [**Add CheckBan to Your Server**](https://discord.com/oauth2/authorize?client_id=1332414680928485457&permissions=274877975552&scope=bot+applications.commands)
+
+
 ## Technologies Used
 
 - Python
