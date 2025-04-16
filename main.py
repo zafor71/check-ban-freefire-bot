@@ -22,7 +22,7 @@ bot = commands.Bot(command_prefix="!", intents=intents)
 
 
 DEFAULT_LANG = "en"
-
+user_languages = {}
  
 nomBot = "None"
 
