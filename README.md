@@ -104,6 +104,37 @@ A Discord bot to check if a Free Fire account is banned, using a user ID. Also i
 4. Copy the generated URL and open it in your browser to invite the bot to your server.
 
 
+## 📚 Bot Commands
+
+### `!ID <user_id>`
+Check whether a Free Fire account is **banned** or **not**.
+
+- 📥 **Input:** a user ID (UID)
+- 📤 **Output:** an embedded message with the account status (banned or not)
+- ✅ **Example:**
+
+---
+
+---
+### `!lang <language_code>`
+Change the **display language** of the bot for the current user.
+
+- 🌐 **Available languages:**
+- `en` – English (default)
+- `fr` – French
+
+- ✅ **Examples:**
+   - `!lang en`
+   - `!lang fr`
+     
+> ℹ️ By default, the language is set to **English (`en`)** if no other language is selected.
+
+
+### 🤖 Invite the Bot to Your Server
+
+Click the link below to invite the CheckBan bot to your Discord server:
+
+👉 [**Add CheckBan to Your Server**](https://discord.com/oauth2/authorize?client_id=1332414680928485457&permissions=274877975552&scope=bot+applications.commands)
 
 
 ## Technologies Used
