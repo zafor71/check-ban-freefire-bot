@@ -45,6 +45,12 @@ async def on_ready():
     nomBot = f"{bot.user}"
     print(f"Le bot est connecté en tant que {bot.user}")
 
+@bot.command(name="guilds")
+async def show_guilds(ctx):
+    guild_names = [f"{i+1}. {guild.name}" for i, guild in enumerate(bot.guilds)]
+    guild_list = "\n".join(guild_names)
+    await ctx.send(f"Le bot est dans les guilds suivantes :\n{guild_list}")
+    
 @bot.command(name="lang")
 async def change_language(ctx,lang_code : str):
     lang_code = lang_code.lower()
