@@ -128,7 +128,7 @@ async def check_ban_command(ctx):
             f"**• {'Player ID' if lang == 'en' else 'ID du joueur'} :** `{id_str}`\n"
             f"**• {'Region' if lang == 'en' else 'Région'} :** `{region}`"
         )
-    embed.set_image(url="https://i.ibb.co/CshJSf8/standard-2.gif")
+        embed.set_image(url="https://i.ibb.co/CshJSf8/standard-2.gif")
     embed.set_thumbnail(url=ctx.author.avatar.url if ctx.author.avatar else ctx.author.default_avatar.url)
     embed.set_footer(text="📌  Garena Free Fire")
     await ctx.send(f"{ctx.author.mention}", embed=embed)
