@@ -26,7 +26,6 @@ A Discord bot to check if a Free Fire account is banned, using a user ID. Also i
 - A Discord bot token
 - A `.env` file containing:
   ```ini
-  APPLICATION_ID=your_application_id
   TOKEN=your_bot_token
   ```
 
@@ -51,7 +50,6 @@ A Discord bot to check if a Free Fire account is banned, using a user ID. Also i
 
 4. Create a `.env` file in the root directory and add your credentials:
    ```ini
-   APPLICATION_ID=your_application_id
    TOKEN=your_bot_token
    ```
 
