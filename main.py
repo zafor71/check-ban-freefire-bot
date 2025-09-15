@@ -126,13 +126,7 @@ async def check_ban_command(ctx):
             # embed.set_image(url="https://i.ibb.co/Kx1RYVKZ/notbanned.gif")
             file = discord.File("assets/notbanned.gif", filename="notbanned.gif")
             embed.set_image(url="attachment://notbanned.gif")
-            # 🔗 JOIN link উপরে
-            embed.add_field(
-                name="",
-                value="🔗 **JOIN : [JOIN NOW](https://discord.gg/RXSh8MpsZA)**",
-                inline=False
-            )
-
+            
         embed.set_thumbnail(url=ctx.author.avatar.url if ctx.author.avatar else ctx.author.default_avatar.url)
         embed.set_footer(text="DEVELOPED BY TANVIR•")
         await ctx.send(f"{ctx.author.mention}", embed=embed ,file=file)
